@@ -24,6 +24,9 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    //MARK: Actions
+    @IBAction func changeHelloThereLabel(_ sender: Any) {
+        helloThereLabel.text = "Hey!"
+    }
 }
 
