@@ -25,8 +25,9 @@ class ViewController: UIViewController {
     }
 
     //MARK: Actions
-    @IBAction func changeHelloThereLabel(_ sender: Any) {
-        helloThereLabel.text = "Hey!"
+    @IBAction func resetNameTextField(_ sender: UIButton) {
+        nameTextField.text = ""
+        helloThereLabel.text = "Hello there!"
     }
 }
 
