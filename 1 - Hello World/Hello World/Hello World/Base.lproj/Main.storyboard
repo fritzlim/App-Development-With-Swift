@@ -62,7 +62,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="helloThereLabel" destination="4ds-EG-Mxs" id="Jc7-e8-vvG"/>
+                        <outlet property="helloThereLabel" destination="4ds-EG-Mxs" id="7Uv-q7-wuH"/>
                         <outlet property="nameTextField" destination="7KU-0s-u2v" id="yaR-Ff-0Bh"/>
                     </connections>
                 </viewController>
