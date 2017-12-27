@@ -32,7 +32,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        helloThereLabel.text = textField.text
+        helloThereLabel.text = "Hello there, " + textField.text! + "!"
     }
     
     //MARK: Actions
