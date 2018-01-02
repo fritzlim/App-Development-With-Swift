@@ -10,31 +10,31 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    // Data model: These strings will be the data for the table view cells
-    let animals = ["Horse", "Cow", "Camel", "Sheep", "Goat"]
-//    let trueFalse = ["True", "False"]
-
-    // cell reuse id (cells that scroll out of view can be reused)
-    let cellReuseIdentifier = "cell"
+    var trueFalseOptions = ["True", "False"]
     
     //MARK: Properties
     @IBOutlet weak var tableView: UITableView!
     
+    // Data model: These strings will be the data for the table view cells
+//    let animals = ["Horse", "Cow", "Camel", "Sheep", "Goat"]
+
+    //Cell reuse identifier from Main.storyboard
+    let cellReuseIdentifier = "optionsCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
-
-        self.tableView.isScrollEnabled = false
+        tableView.dataSource = self
         
-        // Register the table view cell class and its reuse id
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
+//        self.tableView.isScrollEnabled = false
+        
+        //Register the table view cell class and its reuse id.
+        //This isn't needed if we create a prototype cell in
+        //the storyboard.
+//      self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         
         // (optional) include this line if you want to remove the extra empty cell divider lines
         // self.tableView.tableFooterView = UIView()
-        
-        // This view controller itself will provide the delegate methods and row data for the table view.
-        tableView.dataSource = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,28 +42,30 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         // Dispose of any resources that can be recreated.
     }
     
-    // number of rows in table view
+    //MARK: UITableViewDataSource methods
+    
+    //Number of rows in table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.animals.count
-//        return self.trueFalse.count
+        return self.trueFalseOptions.count
     }
     
-    // create a cell for each table view row
+    //Create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        // create a new cell if needed or reuse an old one
-        let cell:UITableViewCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as UITableViewCell!
+        //Create a new cell if needed or reuse an old one
+        let cell:UITableViewCell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier)!
         
-        // set the text from the data model
-        cell.textLabel?.text = self.animals[indexPath.row]
-//        cell.textLabel?.text = self.trueFalse[indexPath.row]
+        //Set the cell's text
+        cell.textLabel?.text = self.trueFalseOptions[indexPath.row]
         
+        //Return the cell
         return cell
     }
-    
-    // method to run when table view cell is tapped
+
+    //Method that runs when a table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("You tapped cell number \(indexPath.row).")
+        //print("You tapped cell number \(indexPath.row).")
+        print("You tapped "  + self.trueFalseOptions[indexPath.row] + ".")
     }
 }
 
