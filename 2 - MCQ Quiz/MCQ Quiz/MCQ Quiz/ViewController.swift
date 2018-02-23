@@ -20,14 +20,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     //Cell reuse identifier from Main.storyboard
     let cellReuseIdentifier = "optionsCell"
+    //let cellSpacingHeight: CGFloat = 20
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        
-//        self.tableView.isScrollEnabled = false
-        
+        tableView.isScrollEnabled = false
+
         //Register the table view cell class and its reuse id.
         //This isn't needed if we create a prototype cell in
         //the storyboard.
@@ -44,9 +44,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     //MARK: UITableViewDataSource methods
     
+    //func numberOfSections(in tableView: UITableView) -> Int {
+    //    return self.trueFalseOptions.count
+    //}
+    
     //Number of rows in table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.trueFalseOptions.count
+        //return 1
     }
     
     //Create a cell for each table view row
@@ -58,14 +63,37 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //Set the cell's text
         cell.textLabel?.text = self.trueFalseOptions[indexPath.row]
         
+        //Note that since each row is in a section, we get the section's index number
+        //cell.textLabel?.text = self.trueFalseOptions[indexPath.section]
+        
+        //Add border and color
+        cell.backgroundColor = UIColor.white
+        cell.layer.borderColor = UIColor.black.cgColor
+        cell.layer.borderWidth = 1
+        cell.layer.cornerRadius = 8
+        //cell.clipsToBounds = true
+        
         //Return the cell
         return cell
     }
+    
+    //Set the spacing between sections
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return cellSpacingHeight
+//    }
 
     //Method that runs when a table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //print("You tapped cell number \(indexPath.row).")
         print("You tapped "  + self.trueFalseOptions[indexPath.row] + ".")
+
+        //print("You tapped "  + self.trueFalseOptions[indexPath.section] + ".")
+
+        let alert = UIAlertController(title: "Cell Tap Detected", message: "You tapped "  + self.trueFalseOptions[indexPath.row] + ".", preferredStyle: UIAlertControllerStyle.alert)
+            //self.trueFalseOptions[indexPath.section] + ".", preferredStyle: UIAlertControllerStyle.alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        
+        self.present(alert, animated: false, completion: nil)
     }
 }
 
