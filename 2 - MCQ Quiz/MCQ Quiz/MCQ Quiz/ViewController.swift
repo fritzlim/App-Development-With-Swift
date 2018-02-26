@@ -44,14 +44,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     //MARK: UITableViewDataSource methods
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return self.trueFalseOptions.count
-    }
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        return self.trueFalseOptions.count
+//    }
     
     //Number of rows in table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return self.trueFalseOptions.count
-        return 1
+        return self.trueFalseOptions.count
+        //return 1
     }
     
     //Create a cell for each table view row
@@ -66,11 +66,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         //Note that since each row is in a section, we get the section's index number
         cell.textLabel?.text = self.trueFalseOptions[indexPath.section]
         
-        //Add border and color
-        cell.backgroundColor = UIColor.white
-        cell.layer.borderColor = UIColor.black.cgColor
+        //Change cell border properties
         cell.layer.borderWidth = 1
         cell.layer.cornerRadius = 8
+       
+        //Change cell colours
+        //cell.backgroundColor = UIColor.white
+        //cell.layer.borderColor = UIColor.black.cgColor
+
         //cell.clipsToBounds = true
         
         //Return the cell
@@ -78,9 +81,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     //Set the spacing between sections
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return cellSpacingHeight
-    }
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return cellSpacingHeight
+//    }
 
     //Method that runs when a table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
